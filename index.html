@@ -10,60 +10,40 @@
         :root { --bg: #f4e9e2; --brown: #5c3d2e; --accent: #eebcbd; }
         body { margin: 0; background-color: var(--bg); font-family: 'Amiri', serif; color: var(--brown); overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* تأثيرات الحركة (CSS Animations) */
         .reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* شاشة القفل */
-        #lock-screen {
-            position: fixed; inset: 0; background: var(--bg); z-index: 999;
-            display: flex; align-items: center; justify-content: center; flex-direction: column;
-            transition: transform 1s cubic-bezier(1, 0, 0, 1);
-        }
+        #lock-screen { position: fixed; inset: 0; background: var(--bg); z-index: 999; display: flex; align-items: center; justify-content: center; flex-direction: column; transition: transform 1s cubic-bezier(1, 0, 0, 1); }
         .lock-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; }
         input { padding: 12px; border: 1px solid #ddd; border-radius: 8px; width: 200px; text-align: center; margin: 15px 0; display: block; }
         .open-btn { background: var(--brown); color: white; border: none; padding: 10px 30px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
-        .open-btn:hover { background: #8d6e63; transform: scale(1.05); }
 
-        /* المحتوى */
         #main-content { display: none; }
         section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; box-sizing: border-box; }
-        
         .title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 10vw, 4rem); margin: 10px 0; color: var(--brown); }
         
-        /* معرض الصور */
         .couple-photos { display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap; justify-content: center; }
-        .photo-frame { 
-            background: white; padding: 12px; border-radius: 10px; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 140px;
-            transition: transform 0.5s;
-        }
-        .photo-frame:hover { transform: rotate(3deg) scale(1.1); }
+        .photo-frame { background: white; padding: 12px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 140px; }
         .photo-frame img { width: 100%; border-radius: 5px; height: 180px; object-fit: cover; }
 
-        .card { 
-            background: rgba(255,255,255,0.7); padding: 30px; border-radius: 25px; 
-            max-width: 450px; width: 90%; margin: 15px 0; text-align: center;
-            border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(5px);
-        }
-        .time { font-size: 1.5rem; font-weight: bold; color: #8d6e63; }
+        .card { background: rgba(255,255,255,0.7); padding: 30px; border-radius: 25px; max-width: 450px; width: 90%; margin: 15px 0; text-align: center; border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(5px); }
+        .location-img { width: 100%; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         
-        .map-btn { 
-            background: #8d6e63; color: white; text-decoration: none; 
-            padding: 12px 25px; border-radius: 30px; display: inline-block; margin-top: 15px;
-        }
+        /* استايل الأيقونات */
+        .icon { width: 40px; height: 40px; margin-bottom: 10px; }
+        .program-item { display: flex; flex-direction: column; align-items: center; margin-bottom: 15px; }
+        
+        .time { font-size: 1.5rem; font-weight: bold; color: #8d6e63; }
+        .map-btn { background: #8d6e63; color: white; text-decoration: none; padding: 12px 25px; border-radius: 30px; display: inline-block; margin-top: 15px; }
     </style>
 </head>
 <body>
 
-    <audio id="weddingSong" loop>
-        <source src="song.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="weddingSong" loop><source src="song.mp3" type="audio/mpeg"></audio>
 
     <div id="lock-screen">
         <div class="lock-box">
             <h2 style="font-style: italic;">You have received an invitation</h2>
-            <p>from Adam & Farah</p>
             <input type="password" id="passCode" placeholder="كلمة السر (love)">
             <button class="open-btn" onclick="openInvitation()">فتح الدعوة ✨</button>
         </div>
@@ -74,40 +54,41 @@
         <section class="reveal">
             <p>LET'S GET MARRIED</p>
             <div class="couple-photos">
-                <div class="photo-frame">
-                    <img src="adam.jpg" alt="Adam">
-                    <p>Adam</p>
-                </div>
-                <div class="photo-frame">
-                    <img src="farah.jpg" alt="Farah">
-                    <p>Farah</p>
-                </div>
+                <div class="photo-frame"><img src="adam.jpg" alt="Adam"><p>Adam</p></div>
+                <div class="photo-frame"><img src="farah.jpg" alt="Farah"><p>Farah</p></div>
             </div>
             <h1 class="title">Adam & Farah</h1>
         </section>
 
+        <!-- قسم المكان المطور -->
         <section class="reveal">
-            <h2 class="title">JULY</h2>
+            <h2 class="title">LOCATION</h2>
             <div class="card">
+                <img src="sheik zayd.jpg" alt="The Secret Garden" class="location-img">
                 <p class="time">Friday, July 10, 2026</p>
                 <hr style="width: 50%; margin: 20px auto; border: 0.5px solid var(--accent);">
-                <h3>LOCATION</h3>
-                <p><b>White Garden</b></p>
-                <p>An open-air wedding venue tucked among olive trees and warm string lights.</p>
-                <a href="https://google.com" target="_blank" class="map-btn">📍 الموقع على الخريطة</a>
+                <h3>The Secret Garden</h3>
+                <p>Sheikh Zayed, Beverly Hills</p>
+                <a href="https://goo.gl" target="_blank" class="map-btn">📍 الموقع على الخريطة</a>
             </div>
         </section>
 
+        <!-- قسم البرنامج بالأيقونات -->
         <section class="reveal">
             <h2 class="title">PROGRAM</h2>
             <div class="card">
-                <p><span class="time">5:00 PM</span> - Guest Arrival</p>
-            </div>
-            <div class="card">
-                <p><span class="time">6:00 PM</span> - Ceremony</p>
-            </div>
-            <div class="card">
-                <p><span class="time">7:30 PM</span> - Dinner</p>
+                <div class="program-item">
+                    <img src="camer.png" alt="Guest Arrival" class="icon">
+                    <p><span class="time">5:00 PM</span> - Guest Arrival</p>
+                </div>
+                <div class="program-item">
+                    <img src="wedding-ring.png" alt="Ceremony" class="icon">
+                    <p><span class="time">6:00 PM</span> - Ceremony</p>
+                </div>
+                <div class="program-item">
+                    <img src="restaurant.png" alt="Dinner" class="icon">
+                    <p><span class="time">7:30 PM</span> - Dinner</p>
+                </div>
             </div>
         </section>
 
@@ -115,7 +96,7 @@
             <h2 class="title">RSVP</h2>
             <div class="card">
                 <p>يشرفنا حضوركم جميعاً</p>
-                <input type="text" placeholder="الاسم بالكامل" style="width: 85%; margin: 10px auto;">
+                <input type="text" placeholder="الاسم بالكامل" style="width: 85%; margin: 10px auto; border-radius: 8px; border: 1px solid #ddd; padding: 10px; text-align: center;">
                 <div style="margin-top: 15px;">
                     <button class="open-btn" style="background: var(--accent); color: black; margin: 5px;">سأحضر بكل حب</button>
                     <button class="open-btn" style="background: #eee; color: black; margin: 5px;">للأسف لا أستطيع</button>
@@ -123,43 +104,33 @@
             </div>
             <p style="margin-top: 50px; font-size: 1.2rem;">With love, Adam & Farah</p>
         </section>
-
     </div>
 
     <script>
-        // وظيفة ظهور العناصر عند السكرول
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
+                if (elementTop < windowHeight - 150) { reveals[i].classList.add("active"); }
             }
         }
-
         window.addEventListener("scroll", reveal);
 
         function openInvitation() {
             const pass = document.getElementById('passCode').value.toLowerCase();
             const audio = document.getElementById('weddingSong');
-            
             if(pass === 'love') {
                 audio.play().catch(e => console.log("Audio blocked"));
                 document.getElementById('lock-screen').style.transform = 'translateY(-100%)';
-                
                 setTimeout(() => {
                     document.getElementById('lock-screen').style.display = 'none';
                     document.getElementById('main-content').style.display = 'block';
-                    // تفعيل أول أنميشن فوراً
                     setTimeout(reveal, 100);
                 }, 1000);
-            } else {
-                alert("كلمة السر خطأ! جرب love");
-            }
+            } else { alert("كلمة السر خطأ!"); }
         }
     </script>
 </body>
 </html>
+
